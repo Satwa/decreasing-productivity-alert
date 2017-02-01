@@ -1,0 +1,23 @@
+{
+	"manifest_version": 2,
+
+	"name": "Decreasing Productivity Alert",
+	"description": "Stop spending too much time on useless websites",
+	"version": "0.9.0",
+
+	"browser_action": {
+		"default_icon": "img/icon.png"
+    },
+
+	"background": {
+		"scripts": ["conf.js"],
+		"persistent": false
+	},
+
+	"content_scripts": [
+		{
+			"matches": ["http://*/*", "https://*/*"],
+			"js": ["dpascript.js"]
+		}
+	]
+}
