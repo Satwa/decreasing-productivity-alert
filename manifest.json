@@ -3,16 +3,29 @@
 
 	"name": "Decreasing Productivity Alert",
 	"description": "Stop spending too much time on useless websites",
+	"options_page": "settings.html",
 	"version": "0.9.0",
 
 	"browser_action": {
-		"default_icon": "img/icon.png"
+		"default_icon": "img/icon.png",
+	    "default_popup": "popup.html"
+    },
+
+    "icons": {
+    	"16": "img/icon.png",
+    	"48": "img/icon.png",
+    	"128": "img/icon.png"
     },
 
 	"background": {
-		"scripts": ["conf.js"],
-		"persistent": false
+		"scripts": ["background.js"]
 	},
+
+	"permissions": [
+		"storage",
+		"notifications",
+		"activeTab"
+	],
 
 	"content_scripts": [
 		{

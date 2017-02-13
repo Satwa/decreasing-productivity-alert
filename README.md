@@ -1,12 +1,12 @@
 # Decreasing Productivity Alert
 
-The ultimate way to end procrastination! _"WIP"_
+The ultimate way to end procrastination! _WIP_
 
 [Read the pitch](https://www.pitchcard.io/c/SyvQE5N8g)
 
 [Any suggestion? Send a mail!](mailto:me@joshua.ovh)
 
-[Get the Chrome extension]()
+[Get the Chrome extension](#)
 
 # Special Thanks
 
