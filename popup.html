@@ -1,3 +1,36 @@
-<!-- 
-	Here will be the place to configure banned websites
--->
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Settings - Decreasing Productivity Alert</title>
+		<link rel="icon" type="image/png" href="img/icon.png" />
+
+		<style>
+			html, body{
+				background:#E8E8E8;
+				color:#242424;
+			}
+			button{
+				width:250px;
+				height: 30px;
+			}
+			#addrm{
+				display: block;
+				margin-bottom: 5px;
+			}
+			#status{
+				font-weight: bold;
+			}
+			#url{display:none;}
+		</style>
+	</head>
+	<center><img src="img/icon.png" height="32px"></center>
+	
+	Current website status: <span id="status"> </span>
+	<br><br>
+
+	<button id="addrm"> </button><br>
+	<button id="settings">Settings</button><br>
+
+	<script src="popup.js"></script>
+	<span id="url"></span>
+</html>
