@@ -31,10 +31,11 @@ function checkStatus(website, callback){
 	chrome.storage.sync.get("dpalertlist", function(res){
 		var blacklist = res.dpalertlist;
 
-        if(blacklist.indexOf(website) === -1)
-            callback(false);
-        else
-            callback(true);
+        if(blacklist.indexOf(website) === -1){
+            if(callback) callback(false);
+        }else{
+            if(callback) callback(true);
+        }
     });
 }
 
@@ -45,7 +46,7 @@ function addBlacklist(website, callback){
         blacklist.push(website);
 
         chrome.storage.sync.set({dpalertlist: blacklist});
-        callback(true);
+        if(callback) callback(true);
     });
 }
 function removeBlacklist(website, callback){
@@ -57,6 +58,19 @@ function removeBlacklist(website, callback){
         blacklist.splice(i, 1);
 
         chrome.storage.sync.set({dpalertlist: blacklist});
-        callback(true);
+        if(callback) callback(true);
     });
 }
+
+// Communication with dpascript.js
+chrome.runtime.onMessage.addListener(function(message, sender, sendResponse){
+    if(message.content === "getStatus"){
+        chrome.tabs.query({active: true, currentWindow: true}, function(tab){
+            tab = tab[0];
+            checkStatus(extractDomain(tab.url), function(r){
+                sendResponse({result: r});
+            });
+        });
+        return true;
+    }
+});

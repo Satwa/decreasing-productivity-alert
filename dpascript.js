@@ -5,13 +5,9 @@
 // Before displaying another time the banner, we look if tabId isn't already registered or the website doesn't already have a timer set
 // When you select time and click OK, we send data to background to create the timer
 
-function demo(){
-	alert("Clicked on button");
-}//tabs.connect
-
 function inject(){
 	var inject = document.createElement("div");
-	inject.innerHTML = "<div style=\"position: absolute; top:0;left:0;right:0;background:#F00; height:50px;\"> <button id=\"testbutton\"> TEST </button></div>";
+	inject.innerHTML = "<div style=\"position: fixed; top:0;left:0;right:0;background:#F00; height:50px;z-index:9999;\"> <button id=\"testbutton\" style=\"\"> TEST </button></div>";
 	document.body.insertBefore(inject, document.body.firstChild);
 }
 
@@ -19,4 +15,14 @@ function inject(){
 /*
  * Listener
  */
-//document.getElementById("testbutton").addEventListener("click", function(){ demo(); });
+ 
+
+// Communication with background.js => is website blacklisted?
+chrome.runtime.sendMessage({
+	content: "getStatus"
+}, function(res){
+	if(res.result === true){
+		inject();
+		document.getElementById("testbutton").addEventListener("click", function(){ alert("It Works!"); });
+	}
+});

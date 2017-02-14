@@ -12,22 +12,18 @@ chrome.tabs.query({active: true, lastFocusedWindow: true}, function(tabs){
 	});
 
 	document.getElementById("addrm").addEventListener("click", function(){
-		if(state.textContent === "Blacklisted")
+		if(state.textContent === "Blacklisted"){
 			bgPage.removeBlacklist(wUrl, function(){
 				window.close();
 			});
-		else if(state.textContent === "Whitelisted")
+		}else if(state.textContent === "Whitelisted"){
 			bgPage.addBlacklist(wUrl, function(){
 				window.close();
 			});
+		}
 		//When whitelist => remove banner + timer
 		//When blacklist => display timer
 		//Alert the need of refreshing the page to apply?
 	});
 
-});
-
-// Open settings tab
-document.getElementById("settings").addEventListener("click", function(){
-	chrome.tabs.create({"url": chrome.extension.getURL("settings.html"), "selected": true});
 });
