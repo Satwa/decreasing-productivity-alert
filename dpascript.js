@@ -7,11 +7,11 @@
 
 function demo(){
 	alert("Clicked on button");
-}
+}//tabs.connect
 
 function inject(){
 	var inject = document.createElement("div");
-	inject.innerHTML = '<div style="position: absolute; top:0;left:0;right:0;background:#F00; height:50px;"> <button id="testbutton"> TEST </button></div>';
+	inject.innerHTML = "<div style=\"position: absolute; top:0;left:0;right:0;background:#F00; height:50px;\"> <button id=\"testbutton\"> TEST </button></div>";
 	document.body.insertBefore(inject, document.body.firstChild);
 }
 

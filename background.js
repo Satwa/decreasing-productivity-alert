@@ -3,51 +3,60 @@
  * Communication logic goes here
  *
  */
-chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
-    if(message.content == "test")
-    	alert("Code up and running");
-    else if(message.content == "blacklist_status")
-    	sendResponse({content: checkStatus(message.website)})
-    else if(message.content == "blacklist")
-    	addBlacklist(message.website);
-    else if(message.content == "whitelist")
-    	removeBlacklist(message.website);
-});
+
+
+//This function comes from StackOverflow (8498592)
+function extractDomain(url) { 
+    //Removing protocol
+    if (url.indexOf("://") > -1)
+        var domain = url.split('/')[2];
+    else
+        domain = url.split('/')[0];
+    //Remove port
+    domain = domain.split(':')[0];
+
+    return domain;
+}
 
 
 /*
- * Maangement section
+ * Management section
   * Under are functions used by the communication system
   * And you will soon find timer handling
  *
  */
-
-function checkStatus(website){
+function checkStatus(website, callback){
+    var r = null;
+    website = extractDomain(website);
 	chrome.storage.sync.get("dpalertlist", function(res){
 		var blacklist = res.dpalertlist;
 
         if(blacklist.indexOf(website) === -1)
-            return false;
+            callback(false);
         else
-            return true;
+            callback(true);
     });
 }
 
-function addBlacklist(website){
+function addBlacklist(website, callback){
+    website = extractDomain(website);
     chrome.storage.sync.get("dpalertlist", function(res){
         var blacklist = res.dpalertlist;
         blacklist.push(website);
 
         chrome.storage.sync.set({dpalertlist: blacklist});
+        callback(true);
     });
 }
-function removeBlacklist(website){
+function removeBlacklist(website, callback){
+    website = extractDomain(website);
     chrome.storage.sync.get("dpalertlist", function(res){
         var blacklist = res.dpalertlist;
 
         var i = blacklist.indexOf(website);
-        blacklist = blacklist.splice(i, 1);
+        blacklist.splice(i, 1);
 
         chrome.storage.sync.set({dpalertlist: blacklist});
+        callback(true);
     });
 }
