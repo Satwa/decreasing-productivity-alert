@@ -29,7 +29,7 @@ function extractDomain(url) {
 function checkStatus(website, callback){
     var r = null;
     website = extractDomain(website);
-	chrome.storage.sync.get({dpalertlist: {}}, function(res){
+	chrome.storage.sync.get({dpalertlist: []}, function(res){
 		var blacklist = res.dpalertlist;
 
         if(blacklist.indexOf(website) === -1){
@@ -42,7 +42,7 @@ function checkStatus(website, callback){
 
 function addBlacklist(website, callback){
     website = extractDomain(website);
-    chrome.storage.sync.get({dpalertlist: {}}, function(res){
+    chrome.storage.sync.get({dpalertlist: []}, function(res){
         var blacklist = res.dpalertlist;
         blacklist.push(website);
 
@@ -52,7 +52,7 @@ function addBlacklist(website, callback){
 }
 function removeBlacklist(website, callback){
     website = extractDomain(website);
-    chrome.storage.sync.get({dpalertlist: {}}, function(res){
+    chrome.storage.sync.get({dpalertlist: []}, function(res){
         var blacklist = res.dpalertlist;
 
         var i = blacklist.indexOf(website);
@@ -172,7 +172,7 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse){
             tab = tab[0];
             doesKeyExist(tab.id, function(r){
                 sendResponse({result: r.exists});
-            })
+            });
         });
         return true;
     }
