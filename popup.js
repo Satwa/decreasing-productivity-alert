@@ -14,10 +14,24 @@ chrome.tabs.query({active: true, lastFocusedWindow: true}, function(tabs){
 	document.getElementById("addrm").addEventListener("click", function(){
 		if(state.textContent === "Blacklisted"){
 			bgPage.removeBlacklist(wUrl, function(){
+				chrome.notifications.create(
+				    'dpalert-notification',{   
+						type: 'basic', 
+						iconUrl: 'img/icon.png', 
+						title: "Status changed", 
+						message: "You need to refresh tab to apply changes" 
+				});
 				window.close();
 			});
 		}else if(state.textContent === "Whitelisted"){
 			bgPage.addBlacklist(wUrl, function(){
+				chrome.notifications.create(
+					'dpalert-notification',{   
+						type: 'basic', 
+						iconUrl: 'img/icon.png', 
+						title: "Status changed", 
+						message: "You need to refresh tab to apply changes" 
+				});
 				window.close();
 			});
 		}
