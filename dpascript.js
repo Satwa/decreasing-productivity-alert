@@ -7,7 +7,7 @@
 function inject(){
 	//TODO: Avant de réinjecter on regarde si le tableau keys ne contient pas déjà une clé pour cet onglet avec cette url (on envoie un message)
 	var inject = document.createElement("div");
-	inject.innerHTML = "<div style=\"position: fixed; top:0;left:0;right:0;background:#F00; z-index:99999999999;color:white;padding:10px 5px;\" id=\"dpalertbanner\"> For how many time would you stay on this website? <input type=\"number\" id=\"timeAmount\" min=\"1\" max=\"60\" placeholder=\"1-50min\"> <button id=\"validate\" style=\"\"> ADD TIMER </button> <button id=\"ignorebtn\" style=\"float:right\">IGNORE</button></div>";
+	inject.innerHTML = "<div style=\"position: fixed; top:0;left:0;right:0;background:#F00; z-index:99999999999;color:white;padding:10px 5px;\" id=\"dpalertbanner\"> For how many time would you stay on this website? <input type=\"number\" id=\"timeAmount\" min=\"1\" max=\"60\" placeholder=\"1-60min\"> <button id=\"validate\" style=\"\"> ADD TIMER </button> <button id=\"ignorebtn\" style=\"float:right\">IGNORE</button></div>";
 	document.body.insertBefore(inject, document.body.firstChild);
 }
 

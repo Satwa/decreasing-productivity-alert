@@ -15,7 +15,7 @@ chrome.tabs.query({active: true, lastFocusedWindow: true}, function(tabs){
 		if(state.textContent === "Blacklisted"){
 			bgPage.removeBlacklist(wUrl, function(){
 				chrome.notifications.create(
-				    'dpalert-notification',{   
+					'dpalert-notification',{   
 						type: 'basic', 
 						iconUrl: 'img/icon.png', 
 						title: "Status changed", 
@@ -35,9 +35,6 @@ chrome.tabs.query({active: true, lastFocusedWindow: true}, function(tabs){
 				window.close();
 			});
 		}
-		//When whitelist => remove banner + timer
-		//When blacklist => display timer
-		//Alert the need of refreshing the page to apply?
 	});
 
 });

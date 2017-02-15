@@ -29,7 +29,7 @@ function extractDomain(url) {
 function checkStatus(website, callback){
     var r = null;
     website = extractDomain(website);
-	chrome.storage.sync.get("dpalertlist", function(res){
+	chrome.storage.sync.get({dpalertlist: {}}, function(res){
 		var blacklist = res.dpalertlist;
 
         if(blacklist.indexOf(website) === -1){
@@ -42,7 +42,7 @@ function checkStatus(website, callback){
 
 function addBlacklist(website, callback){
     website = extractDomain(website);
-    chrome.storage.sync.get("dpalertlist", function(res){
+    chrome.storage.sync.get({dpalertlist: {}}, function(res){
         var blacklist = res.dpalertlist;
         blacklist.push(website);
 
@@ -52,7 +52,7 @@ function addBlacklist(website, callback){
 }
 function removeBlacklist(website, callback){
     website = extractDomain(website);
-    chrome.storage.sync.get("dpalertlist", function(res){
+    chrome.storage.sync.get({dpalertlist: {}}, function(res){
         var blacklist = res.dpalertlist;
 
         var i = blacklist.indexOf(website);
@@ -66,7 +66,7 @@ function removeBlacklist(website, callback){
 function doesKeyExist(tabId, callback){
     //for loop of keys array exploding one to one to check if exploded[0] != tabId and returning true or false
     var exploded;
-    for(i = 0; i < keys.length; i++){
+    for(var i = 0; i < keys.length; i++){
         exploded = keys[i].split("-");
         if(parseInt(exploded[0]) === tabId){
             if(callback) callback({exists: true, ind: i, tabId: exploded[0], wUrl: exploded[1]});
@@ -110,7 +110,7 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab){
     //On vérifie que la clé existe
     doesKeyExist(tabId, function(r){
         if(r.exists === true){
-            if(r.wUrl != extractDomain(tab.url)){
+            if(r.wUrl !== extractDomain(tab.url)){
                 checkStatus(r.wUrl, function(res){
                     if(res === true){
                         //Si le site est blacklist on supprime la clé pour oublier l'ignore
@@ -126,7 +126,7 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab){
                         clearTimeout(timeouts[r.tabId + "-" + r.wUrl]);
                         delete timeouts[r.tabId + "-" + r.wUrl];
                     }
-                })
+                });
                 //Si l'url est différente on effectue les modifications dans keys pour déjouer l'injection
                 //on vérifie que la nouvelle url est aussi blacklist et dans ce cas ^^^^^^ sinon on supprime le timeout 
             }
