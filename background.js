@@ -86,7 +86,7 @@ function timeoutTab(delay, callback){
         var tabId = tab[0].id;
         var wUrl  = extractDomain(tab[0].url);
         //TODO: Send a true message
-        timeouts[tabId + "-" + wUrl] = setTimeout(function() {alert("Timeout ended!"); clearTimeout(timeouts[tabId + "-" + wUrl]); delete timeouts[tabId + "-" + wUrl];}, delay*60000); //TODO: Remove from keys array
+        timeouts[tabId + "-" + wUrl] = setTimeout(function() {alert("Time runs out and your time on this website has ended!"); clearTimeout(timeouts[tabId + "-" + wUrl]); delete timeouts[tabId + "-" + wUrl];}, delay*60000); //TODO: Remove from keys array
         keys.push(tabId + "-" + wUrl);
 
         if(callback) callback(true);
