@@ -8,7 +8,7 @@ The ultimate way to end procrastination! _WIP_
 
 [Any suggestion? Send a mail!](mailto:me@joshua.ovh)
 
-[Get the Chrome extension](#)
+[Get the Chrome extension](https://chrome.google.com/webstore/detail/decreasing-productivity-a/dckpgkgpdegpkkgbpnfojidbbmfifhmo)
 
 # Special Thanks
 
