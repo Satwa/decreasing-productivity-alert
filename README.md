@@ -4,7 +4,9 @@
 
 The ultimate way to end procrastination! _WIP_
 
-[Read the pitch](https://www.pitchcard.io/c/SyvQE5N8g)
+[Read the pitch](https://meja.ch/idea/22-decreasing-productivity-alert)
+
+[Trello board](https://trello.com/b/G0xWlEQg/decreasing-productivity-alert)
 
 [Any suggestion? Send a mail!](mailto:me@joshua.ovh)
 
